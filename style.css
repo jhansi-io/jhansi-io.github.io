@@ -201,3 +201,8 @@ footer a:hover { color: #888; }
   left: 0;
   color: #333;
 }
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
