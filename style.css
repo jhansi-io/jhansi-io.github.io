@@ -410,8 +410,6 @@ th {
 td { color: #777; }
 tr:last-child td { border-bottom: none; }
 
-/* HERO (why page — no two-column) */
-.hero .container { max-width: 720px; }
 
 @media (max-width: 860px) {
   .two-col { grid-template-columns: 1fr; }
