@@ -1,56 +1,184 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jhansi.io — Build it. Run it. Ship it.</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <!-- Privacy-friendly analytics by Plausible -->
-  <script async src="https://plausible.io/js/pa-sdYQK9gNJYAQSeEMpBjyP.js"></script>
-  <script>
-    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-    plausible.init()
-  </script>
-  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jhansi — Give AI agents execution, not access</title>
+  <meta name="description" content="Run AI-generated code securely without exposing credentials." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <nav>
-    <span class="logo">jhansi.io</span>
+    <a class="logo" href="index.html">jhansi.io</a>
     <div class="nav-links">
-      <a href="https://docs.jhansi.io" target="_blank">Docs</a>
-      <a href="https://jhansiio.featurebase.app">Roadmap</a>
-      <a href="https://github.com/jhansi-io" target="_blank">GitHub</a>
+      <a class="active" href="index.html">Home</a>
+      <a href="why-jhansi.html">Why Jhansi</a>
+      <a href="https://docs.jhansi.io">Docs</a>
+      <a href="https://github.com/jhansi-io">GitHub</a>
+      <a href="mailto:hello@jhansi.io">Contact</a>
     </div>
   </nav>
 
   <main>
-    <p class="tag">Open source · Self-hostable</p>
-    <h1>Run AI-generated code.<br><span>Safely.</span></h1>
-    <p class="desc">jhansi.io is an open source sandbox for running AI-generated code safely — isolated, auditable, no security risk.</p>
-    <div class="actions">
-      <a href="https://github.com/jhansi-io" class="btn-primary">★ Star on GitHub</a>
-	  <a href="https://jhansiio.featurebase.app" class="btn-secondary" target="_blank">View roadmap →</a>    </div>
 
-    <div class="divider"></div>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="tag">Self-hosted execution for AI agents</div>
+          <h1>Give AI agents <span>execution</span>, not access.</h1>
+          <p class="desc">Run AI-generated code inside isolated sandboxes. Credentials stay under your control. Agents never see secrets.</p>
+          <div class="actions">
+            <a class="btn-primary" href="https://docs.jhansi.io/getting-started/quickstart">Get started →</a>
+            <a class="btn-secondary" href="why-jhansi.html">Why Jhansi?</a>
+          </div>
+          <div class="proof">
+            <span class="pill">Open source</span>
+            <span class="pill">Self-hosted</span>
+            <span class="pill">MCP compatible</span>
+            <span class="pill">Python SDK</span>
+          </div>
+        </div>
+        <div class="visual-card">
+          <div class="terminal">
+            <div class="terminal-bar"><span class="circle"></span><span class="circle"></span><span class="circle"></span></div>
+            <div class="terminal-body">
+              <div><span class="dim"># agent request</span></div>
+              <div>query_customers(created_since="2026-06-01")</div>
+              <br />
+              <div><span class="green">✓</span> sandbox created</div>
+              <div><span class="amber">→</span> credential mapped at runtime</div>
+              <div><span class="green">✓</span> code executed in isolation</div>
+              <div><span class="green">✓</span> result returned to agent</div>
+              <div><span class="green">✓</span> sandbox destroyed</div>
+              <div><span class="red">✗</span> DB_PASSWORD never exposed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="what">
-      <h2>What is it</h2>
-      <p>Every AI coding tool — Cursor, Claude Code, Windsurf — generates Python. <strong>Running that code safely is an unsolved problem.</strong></p>
-      <p>jhansi.io provides a runtime layer: hard-isolated execution per run, secrets injected safely so AI can use them but can't steal them, and a full audit log for compliance.</p>
-      <p>Open source for self-hosting. SaaS for teams who don't want the infra.</p>
-    </div>
+    <!-- THE PROBLEM -->
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">The problem</div>
+          <h2>The agent should not hold your secrets.</h2>
+          <p>AI agents need to run code, query databases, call APIs and automate workflows. But giving them raw credentials creates a new security boundary problem.</p>
+        </div>
+        <div class="bad-good">
+          <div class="card">
+            <div class="card-label">Without Jhansi</div>
+            <div class="flow">
+              <div class="node danger"><strong>AI Agent</strong> receives credentials</div>
+              <div class="node danger"><strong>DB_PASSWORD</strong></div>
+              <div class="node danger"><strong>API_TOKEN</strong></div>
+              <div class="node danger"><strong>AWS_KEY</strong></div>
+            </div>
+          </div>
+          <div class="card soft">
+            <div class="card-label">With Jhansi</div>
+            <div class="flow">
+              <div class="node safe"><strong>AI Agent</strong> requests execution</div>
+              <div class="node safe"><strong>Jhansi</strong> creates an isolated sandbox</div>
+              <div class="node safe"><strong>Credentials</strong> are injected at runtime</div>
+              <div class="node safe"><strong>Result</strong> returned, sandbox destroyed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT JHANSI DOES -->
+    <section>
+      <div class="container architecture">
+        <div class="section-head">
+          <div class="section-kicker">What Jhansi does</div>
+          <h2>A runtime boundary between agents and your systems.</h2>
+          <p>Jhansi gives AI agents a controlled place to execute work without directly exposing your machine, environment or credentials.</p>
+        </div>
+        <div class="stack">
+          <div class="stack-layer"><strong>Agent Interface</strong><p>Connect through MCP or the Python SDK.</p></div>
+          <div class="connector"></div>
+          <div class="stack-layer"><strong>Isolated Runtime</strong><p>Create a sandbox, run generated code, collect output and clean up.</p></div>
+          <div class="connector"></div>
+          <div class="stack-layer"><strong>Credential Mapping</strong><p>Credentials are injected during execution, not handed to the agent.</p></div>
+          <div class="connector"></div>
+          <div class="stack-layer"><strong>Future Governance Layer</strong><p>Centralized audit, policies and enterprise controls as the platform matures.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE CAPABILITIES -->
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Core capabilities</div>
+          <h2>Start with a simple self-hosted runtime.</h2>
+          <p>Jhansi focuses on the execution boundary first. Governance can grow later when real teams and real systems are involved.</p>
+        </div>
+        <div class="features">
+          <div class="card"><div class="feature-icon">01</div><h3>Self-hosted</h3><p>Run inside your own infrastructure without depending on a cloud execution provider.</p></div>
+          <div class="card"><div class="feature-icon">02</div><h3>Sandboxed execution</h3><p>Execute generated code away from the user's local machine and environment.</p></div>
+          <div class="card"><div class="feature-icon">03</div><h3>Secret isolation</h3><p>Agents get results, not raw passwords, tokens or connection strings.</p></div>
+          <div class="card"><div class="feature-icon">04</div><h3>Audit ready</h3><p>Build towards logs, run history and reviewable execution records.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Use cases</div>
+          <h2>For teams adopting AI agents.</h2>
+          <p>Jhansi is for builders who want AI agents to execute useful work without handing them unrestricted access.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card"><h3>AI developers</h3><p>Run generated code safely while building agents and MCP workflows.</p></div>
+          <div class="card"><h3>Platform teams</h3><p>Standardize how agent-generated code runs inside your environment.</p></div>
+          <div class="card"><h3>Regulated teams</h3><p>Prepare for auditability and governance before agents reach sensitive systems.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON TEASER -->
+    <section>
+      <div class="container">
+        <div class="teaser">
+          <div>
+            <div class="section-kicker">Comparison</div>
+            <h3>Why not local execution, Docker, E2B or Daytona?</h3>
+            <p>See where Jhansi fits and why self-hosted execution matters.</p>
+          </div>
+          <a class="btn-secondary" href="why-jhansi.html">Compare approaches →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section>
+      <div class="container">
+        <div class="final-cta">
+          <div class="section-kicker">Next</div>
+          <h2>Stop giving credentials to AI agents.</h2>
+          <p class="desc">Run generated code safely, keep secrets controlled and make every execution easier to reason about.</p>
+          <div class="actions">
+            <a class="btn-primary" href="https://docs.jhansi.io/getting-started/quickstart">Get started →</a>
+            <a class="btn-secondary" href="https://github.com/jhansi-io">View GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-<footer>
-    <p>jhansi.io</p>
+  <footer>
+    <p>© 2026 jhansi.io</p>
     <div class="footer-links">
-      <a href="mailto:hello@jhansi.io">hello@jhansi.io</a>
-      <a href="https://github.com/jhansi-io" target="_blank">github</a>
+      <a href="https://docs.jhansi.io">Docs</a>
+      <a href="https://github.com/jhansi-io">GitHub</a>
     </div>
   </footer>
-
 </body>
 </html>
