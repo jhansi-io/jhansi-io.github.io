@@ -1,184 +1,300 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Jhansi — Give AI agents execution, not access</title>
-  <meta name="description" content="Run AI-generated code securely without exposing credentials." />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://jhansi.io/">
+<title>jhansi — self-hosted runtime for untrusted and AI-generated code</title>
+<meta name="description" content="jhansi is a self-hosted runtime for untrusted and AI-generated code — simple to run, provable by design. Pre-alpha, built in public." />
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="manifest" href="assets/site.webmanifest" />
+<meta name="theme-color" content="#03091B" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://jhansi.io/" />
+<meta property="og:site_name" content="jhansi.io" />
+<meta property="og:title" content="jhansi — self-hosted runtime for untrusted and AI-generated code" />
+<meta property="og:description" content="Simple to run, provable by design. Pre-alpha, built in public." />
+<meta property="og:image" content="https://jhansi.io/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@Jhansi_io" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root { color-scheme: dark; }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #03091B; color: #fff; font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; transition: color 160ms cubic-bezier(0.2,0,0,1), background-color 160ms cubic-bezier(0.2,0,0,1), border-color 160ms cubic-bezier(0.2,0,0,1); }
+  a:hover { color: #9C87F9; }
+  @media (max-width: 620px) {
+    .jh-pad { padding-left: 20px; padding-right: 20px; }
+    .jh-stack { grid-template-columns: 1fr; }
+    .jh-stack > div { border-left: 0; border-top: 1px solid #1B2437; }
+    .jh-stack > div:first-child { border-top: 0; }
+  }
+
+  .btn-p:hover { background: #4726CE !important; color: #fff !important; }
+  .btn-g:hover { border-color: #7C8698 !important; color: #fff !important; }
+</style>
 </head>
 <body>
-  <nav>
-    <a class="logo" href="index.html">jhansi.io</a>
-    <div class="nav-links">
-      <a class="active" href="index.html">Home</a>
-      <a href="why-jhansi.html">Why Jhansi</a>
-      <a href="https://docs.jhansi.io">Docs</a>
-      <a href="https://github.com/jhansi-io">GitHub</a>
+<div style="width:100%">
+
+  <!-- nav -->
+  <div style="border-bottom:1px solid #1B2437">
+    <div class="jh-pad" style="max-width:680px; margin:0 auto; padding:0 24px; min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:20px">
+      <a href="#top" style="display:flex; align-items:center; gap:10px">
+        <img src="assets/mark-dark.svg" alt="" style="width:30px; height:23px; display:block" />
+        <span style="font-size:17px; font-weight:800; letter-spacing:-0.02em">jhansi<span style="color:#5632F5">.io</span></span>
+      </a>
+      <div style="display:flex; gap:22px; font-size:14px; color:#7C8698">
+        <a href="https://jhansiio.featurebase.app">Roadmap ↗</a>
+        <a href="https://github.com/jhansi-io/jhansi">GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- hero -->
+  <div id="top" style="border-bottom:1px solid #1B2437">
+    <div class="jh-pad" style="max-width:680px; margin:0 auto; padding:76px 24px 56px">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#7C8698; margin-bottom:18px">Open source · self-hosted · pre-alpha</div>
+      <h1 style="margin:0; font-size:clamp(38px, 7vw, 50px); line-height:1.06; letter-spacing:-0.04em; font-weight:800; text-wrap:balance">Run untrusted code inside <span style="color:#5632F5">a boundary you control.</span></h1>
+      <p style="margin:18px 0 0; font-size:18px; line-height:1.65; color:#C3C9D6; text-wrap:pretty">jhansi is a self-hosted runtime for untrusted and AI-generated code — simple to run, provable by design. It runs on infrastructure you control, with a durable record of what was authorised and how the execution ended.</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:28px">
+        <a href="https://github.com/jhansi-io/jhansi" style="display:inline-block; padding:11px 20px; border-radius:9px; font-size:15px; font-weight:600; background:#5632F5; color:#fff" class="btn-p">View on GitHub →</a>
+        <a href="#architecture" style="display:inline-block; padding:11px 20px; border-radius:9px; font-size:15px; font-weight:600; border:1px solid #1B2437; color:#fff" class="btn-g">See how it works</a>
+      </div>
+      <div class="jh-stack" style="margin-top:36px; display:grid; grid-template-columns:repeat(3, 1fr); background:#0A1223; border:1px solid #1B2437; border-radius:14px; overflow:hidden; box-shadow:0 14px 38px rgba(0,0,0,0.18)">
+      <div style="padding:20px 22px">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#7C8698; margin-bottom:7px">Stage</div>
+        <div style="font-size:15px; font-weight:700">Pre-alpha</div>
+        <div style="font-size:12px; line-height:1.5; color:#7C8698; margin-top:3px">Not production-ready</div>
+      </div>
+      <div style="padding:20px 22px; border-left:1px solid #1B2437">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#7C8698; margin-bottom:7px">Engine</div>
+        <div style="font-size:15px; font-weight:700">Go</div>
+        <div style="font-size:12px; line-height:1.5; color:#7C8698; margin-top:3px">In active development</div>
+      </div>
+      <div style="padding:20px 22px; border-left:1px solid #1B2437">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#7C8698; margin-bottom:7px">Licence</div>
+        <div style="font-size:15px; font-weight:700">Apache-2.0</div>
+        <div style="font-size:12px; line-height:1.5; color:#7C8698; margin-top:3px">Built in public</div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- the problem -->
+  <div style="border-bottom:1px solid #1B2437">
+    <div class="jh-pad" style="max-width:680px; margin:0 auto; padding:56px 24px">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#7C8698; font-weight:500; margin-bottom:9px">The problem</div>
+      <h2 style="margin:0 0 26px; font-size:28px; line-height:1.2; letter-spacing:-0.03em; font-weight:800; text-wrap:balance">Generating the code is the easy part.</h2>
+      <div style="display:grid; gap:0">
+        <div style="padding:18px 0; border-top:1px solid #1B2437">
+          <div style="font-size:16px; font-weight:700; letter-spacing:-0.015em; margin-bottom:3px">It can reach anything the process can</div>
+          <p style="margin:0; font-size:15px; line-height:1.6; color:#7C8698; text-wrap:pretty">Generated code touches files, networks, credentials and host resources.</p>
+        </div>
+        <div style="padding:18px 0; border-top:1px solid #1B2437">
+          <div style="font-size:16px; font-weight:700; letter-spacing:-0.015em; margin-bottom:3px">Your own infrastructure isn't a control</div>
+          <p style="margin:0; font-size:15px; line-height:1.6; color:#7C8698; text-wrap:pretty">Running it inside your perimeter doesn't make the execution bounded or provable.</p>
+        </div>
+        <div style="padding:18px 0; border-top:1px solid #1B2437; border-bottom:1px solid #1B2437">
+          <div style="font-size:16px; font-weight:700; letter-spacing:-0.015em; margin-bottom:3px">Logs are written after the fact</div>
+          <p style="margin:0; font-size:15px; line-height:1.6; color:#7C8698; text-wrap:pretty">They aren't a trustworthy account of what was authorised and what actually happened.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- architecture -->
+  <div id="architecture" style="border-bottom:1px solid #1B2437; background:#060D1F">
+    <div class="jh-pad" style="max-width:680px; margin:0 auto; padding:56px 24px">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#7C8698; font-weight:500; margin-bottom:9px">Architecture</div>
+      <h2 style="margin:0 0 16px; font-size:28px; line-height:1.2; letter-spacing:-0.03em; font-weight:800; text-wrap:balance">Between the agent and your infrastructure.</h2>
+      <p style="margin:0 0 34px; font-size:16px; line-height:1.65; color:#C3C9D6; text-wrap:pretty">AI agents can generate the code. jhansi gives that code a controlled place to run — and records what happened while the execution is taking place, rather than reconstructing it afterwards.</p>
+
+      <div style="display:flex; justify-content:center">
+        <div style="border-radius:999px; background:#fff; color:#03091B; padding:9px 20px; font-size:14px; font-weight:700">AI agent or application</div>
+      </div>
+      <div style="position:relative; height:52px">
+        <div style="position:absolute; left:50%; top:0; bottom:0; width:2px; background:#2A3348; transform:translateX(-50%)"></div>
+        <div style="position:absolute; left:calc(50% + 14px); top:14px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#9C87F9; white-space:nowrap">execution request</div>
+        <div style="position:absolute; left:50%; bottom:-1px; width:8px; height:8px; border-right:2px solid #2A3348; border-bottom:2px solid #2A3348; transform:translateX(-50%) rotate(45deg)"></div>
+      </div>
+
+      <div style="position:relative; border:1px dashed #2A3348; border-radius:16px; padding:30px 16px 16px; background:#03091B">
+        <span style="position:absolute; top:-8px; left:20px; background:#060D1F; padding:0 9px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#7C8698">Your infrastructure</span>
+
+        <div style="position:relative; border:1.5px solid #5632F5; border-radius:13px; padding:30px 20px 24px; background:#0A1223">
+          <span style="position:absolute; top:-9px; left:18px; background:#0A1223; padding:0 9px; display:inline-flex; align-items:center; gap:7px">
+            <img src="assets/mark-dark.svg" alt="" style="width:20px; height:15px; display:block" />
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#9C87F9">jhansi · execution boundary</span>
+          </span>
+
+          <div style="display:grid; grid-template-columns:28px 1fr; column-gap:14px">
+            <div style="position:relative; padding-bottom:20px">
+              <span style="position:absolute; left:13px; top:28px; bottom:0; width:2px; background:#2B187E"></span>
+              <span style="position:relative; width:28px; height:28px; border-radius:999px; background:#1D1055; color:#BFB3FB; font-family:'JetBrains Mono',monospace; font-size:11px; display:flex; align-items:center; justify-content:center">01</span>
+            </div>
+            <div style="padding-bottom:20px">
+              <div style="font-size:17px; font-weight:700; letter-spacing:-0.02em; line-height:28px">Authorise the run</div>
+              <div style="font-size:14px; line-height:1.5; color:#7C8698">Confirm who may request this execution.</div>
+            </div>
+
+            <div style="position:relative; padding-bottom:20px">
+              <span style="position:absolute; left:13px; top:28px; bottom:0; width:2px; background:#2B187E"></span>
+              <span style="position:relative; width:28px; height:28px; border-radius:999px; background:#1D1055; color:#BFB3FB; font-family:'JetBrains Mono',monospace; font-size:11px; display:flex; align-items:center; justify-content:center">02</span>
+            </div>
+            <div style="padding-bottom:20px">
+              <div style="font-size:17px; font-weight:700; letter-spacing:-0.02em; line-height:28px">Isolate the execution</div>
+              <div style="font-size:14px; line-height:1.5; color:#7C8698">A dedicated sandbox, separate from the host.</div>
+            </div>
+
+            <div style="position:relative; padding-bottom:20px">
+              <span style="position:absolute; left:13px; top:28px; bottom:0; width:2px; background:linear-gradient(#2B187E, #045E3E)"></span>
+              <span style="position:relative; width:28px; height:28px; border-radius:999px; background:#1D1055; color:#BFB3FB; font-family:'JetBrains Mono',monospace; font-size:11px; display:flex; align-items:center; justify-content:center">03</span>
+            </div>
+            <div style="padding-bottom:20px">
+              <div style="font-size:17px; font-weight:700; letter-spacing:-0.02em; line-height:28px">Run it under limits</div>
+              <div style="font-size:14px; line-height:1.5; color:#7C8698">Designed to bound runtime, resources and access.</div>
+            </div>
+
+            <div style="position:relative">
+              <span style="position:relative; width:28px; height:28px; border-radius:999px; background:#023E29; color:#8FE5C4; font-family:'JetBrains Mono',monospace; font-size:11px; display:flex; align-items:center; justify-content:center">04</span>
+            </div>
+            <div>
+              <div style="font-size:17px; font-weight:700; letter-spacing:-0.02em; line-height:28px; color:#8FE5C4">Record what happened</div>
+              <div style="font-size:14px; line-height:1.5; color:#7C8698">Structured events as the lifecycle progresses.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:relative; display:grid; grid-template-columns:1fr 1fr; gap:14px; height:50px">
+        <div style="position:absolute; left:50%; top:0; height:24px; width:2px; background:#2A3348; transform:translateX(-50%)"></div>
+        <div style="position:relative">
+          <div style="position:absolute; left:50%; right:-7px; top:24px; height:2px; background:#2A3348"></div>
+          <div style="position:absolute; left:50%; top:24px; bottom:0; width:2px; background:#2A3348; transform:translateX(-50%)"></div>
+          <div style="position:absolute; left:50%; bottom:-1px; width:8px; height:8px; border-right:2px solid #2A3348; border-bottom:2px solid #2A3348; transform:translateX(-50%) rotate(45deg)"></div>
+        </div>
+        <div style="position:relative">
+          <div style="position:absolute; left:-7px; right:50%; top:24px; height:2px; background:#08BE7B"></div>
+          <div style="position:absolute; left:50%; top:24px; bottom:0; width:2px; background:#08BE7B; transform:translateX(-50%)"></div>
+          <div style="position:absolute; left:50%; bottom:-1px; width:8px; height:8px; border-right:2px solid #08BE7B; border-bottom:2px solid #08BE7B; transform:translateX(-50%) rotate(45deg)"></div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px">
+        <div style="border:1px solid #1B2437; border-radius:11px; background:#03091B; padding:16px 18px">
+          <div style="font-size:15px; font-weight:800; letter-spacing:-0.02em; margin-bottom:4px">Execution result</div>
+          <div style="font-size:13px; line-height:1.5; color:#7C8698">What the code produced, returned to the caller.</div>
+        </div>
+        <div style="border:1.5px solid #08BE7B; border-radius:11px; background:#023E29; padding:15px 17px">
+          <div style="font-size:15px; font-weight:800; letter-spacing:-0.02em; margin-bottom:4px; color:#C2F1DF">Evidence record</div>
+          <div style="font-size:13px; line-height:1.5; color:#8FE5C4">A durable account of the run and how it ended.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:26px; padding-top:18px; border-top:1px solid #1B2437; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#7C8698">Most sandboxes return the result. The evidence path is the difference.</span>
+        <a href="https://github.com/jhansi-io/jhansi" style="font-size:15px; font-weight:700; color:#9C87F9">View the implementation →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- why jhansi -->
+  <div id="why" style="border-bottom:1px solid #1B2437">
+    <div class="jh-pad" style="max-width:680px; margin:0 auto; padding:56px 24px">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#7C8698; font-weight:500; margin-bottom:9px">Why jhansi</div>
+      <h2 style="margin:0 0 14px; font-size:28px; line-height:1.2; letter-spacing:-0.03em; font-weight:800">Simple to run. Provable by design.</h2>
+      <p style="margin:0 0 30px; font-size:15px; line-height:1.65; color:#7C8698; text-wrap:pretty">For developers building agent workflows, platform teams defining an execution standard, and regulated teams that need the boundary to stay inside their environment.</p>
+
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#9C87F9; font-weight:500; margin-bottom:9px">Simple to run</div>
+      <h3 style="margin:0 0 12px; font-size:20px; letter-spacing:-0.025em; font-weight:800">Self-hosted, complete on its own.</h3>
+      <p style="margin:0 0 12px; font-size:16px; line-height:1.7; color:#C3C9D6; text-wrap:pretty">One machine is a first-class deployment, not a cut-down cluster install. The direction is a single binary you install and start.</p>
+      <p style="margin:0; font-size:16px; line-height:1.7; color:#7C8698; text-wrap:pretty">No Kubernetes, no Helm and no mandatory cloud control plane for the core product.</p>
+
+      <div style="height:1px; background:#1B2437; margin:34px 0"></div>
+
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#52D6A3; font-weight:500; margin-bottom:9px">Provable by design</div>
+      <h3 style="margin:0 0 12px; font-size:20px; letter-spacing:-0.025em; font-weight:800">Evidence designed into the engine.</h3>
+      <p style="margin:0 0 12px; font-size:16px; line-height:1.7; color:#C3C9D6; text-wrap:pretty">Structured events come off the execution lifecycle itself — including the transitions that fail and the ones that get denied — rather than being reconstructed later.</p>
+      <p style="margin:0; font-size:16px; line-height:1.7; color:#7C8698; text-wrap:pretty">That provides a durable execution history now and a path toward exportable, tamper-evident evidence as the runtime evolves. These are controls and evidence that can support compliance work — not a compliance claim.</p>
+    </div>
+  </div>
+
+  <!-- the record -->
+  <div id="evidence" style="border-bottom:1px solid #1B2437">
+    <div class="jh-pad" style="max-width:680px; margin:0 auto; padding:56px 24px">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#7C8698; font-weight:500; margin-bottom:9px">Execution evidence</div>
+      <h2 style="margin:0 0 16px; font-size:28px; line-height:1.2; letter-spacing:-0.03em; font-weight:800">A record, not just a log file.</h2>
+      <p style="margin:0 0 28px; font-size:16px; line-height:1.65; color:#C3C9D6; text-wrap:pretty">Every state change produces a structured event, including failures and denied transitions. The record is created as the execution moves through its lifecycle.</p>
+
+      <div style="border:1px solid #1B2437; border-radius:14px; overflow:hidden; background:#060D1F">
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 16px; border-bottom:1px solid #1B2437; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#7C8698">
+          <span>Execution record</span>
+          <span style="color:#52D6A3; font-weight:500">append-only</span>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; overflow-x:auto">
+          <div style="display:grid; grid-template-columns:70px minmax(170px,1fr) 100px; padding:9px 16px; border-bottom:1px solid rgba(27,36,55,0.7)"><span style="color:#7C8698">+0.000</span><span>sandbox.created</span><span style="color:#7C8698; text-align:right">sbx_7f3a91</span></div>
+          <div style="display:grid; grid-template-columns:70px minmax(170px,1fr) 100px; padding:9px 16px; border-bottom:1px solid rgba(27,36,55,0.7)"><span style="color:#7C8698">+0.014</span><span>run.created</span><span style="color:#7C8698; text-align:right">run_2c8e40</span></div>
+          <div style="display:grid; grid-template-columns:70px minmax(170px,1fr) 100px; padding:9px 16px; border-bottom:1px solid rgba(27,36,55,0.7)"><span style="color:#7C8698">+0.021</span><span style="color:#9C87F9">run.started_rejected</span><span style="color:#7C8698; text-align:right">run_2c8e40</span></div>
+          <div style="display:grid; grid-template-columns:70px minmax(170px,1fr) 100px; padding:9px 16px; border-bottom:1px solid rgba(27,36,55,0.7)"><span style="color:#7C8698">+0.118</span><span>run.started</span><span style="color:#7C8698; text-align:right">run_2c8e40</span></div>
+          <div style="display:grid; grid-template-columns:70px minmax(170px,1fr) 100px; padding:9px 16px; border-bottom:1px solid rgba(27,36,55,0.7)"><span style="color:#7C8698">+0.204</span><span>run.succeeded</span><span style="color:#7C8698; text-align:right">run_2c8e40</span></div>
+          <div style="display:grid; grid-template-columns:70px minmax(170px,1fr) 100px; padding:9px 16px"><span style="color:#7C8698">+0.209</span><span style="color:#52D6A3">sandbox.deleted</span><span style="color:#7C8698; text-align:right">sbx_7f3a91</span></div>
+        </div>
+      </div>
+      <div style="margin-top:11px; font-family:'JetBrains Mono',monospace; font-size:10px; color:#7C8698">event name · timestamp · aggregate — representative of the current event envelope</div>
+      <p style="margin:22px 0 0; font-size:14px; line-height:1.65; color:#7C8698; text-wrap:pretty">The current design provides an append-only execution history. Export and tamper-evidence capabilities will evolve with the runtime.</p>
+    </div>
+  </div>
+
+  <!-- closing: build status + discussion, merged -->
+  <div style="border-bottom:1px solid #1B2437; background:#060D1F">
+    <div class="jh-pad" style="max-width:680px; margin:0 auto; padding:56px 24px">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#7C8698; font-weight:500; margin-bottom:9px">Current build</div>
+      <h2 style="margin:0 0 16px; font-size:28px; line-height:1.2; letter-spacing:-0.03em; font-weight:800">Shape it before it ships.</h2>
+      <p style="margin:0 0 30px; font-size:16px; line-height:1.65; color:#C3C9D6; text-wrap:pretty">jhansi is being rebuilt in Go around the core create → execute → destroy lifecycle, with the evidence spine designed into the foundation. Nothing to install yet — the execution model, evidence format and isolation boundaries are being developed in public. Join the discussion on GitHub or follow progress on the roadmap.</p>
+
+      <div style="display:grid; gap:13px; margin-bottom:32px">
+        <div style="display:flex; gap:16px; align-items:baseline">
+          <span style="flex:0 0 44px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#7C8698">Done</span>
+          <span style="font-size:15px; color:#C3C9D6">Domain state machines, in-memory registry and append-only event sink</span>
+        </div>
+        <div style="display:flex; gap:16px; align-items:baseline">
+          <span style="flex:0 0 44px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#52D6A3">Now</span>
+          <span style="font-size:15px; color:#fff">Service layer and the first HTTP execution path</span>
+        </div>
+        <div style="display:flex; gap:16px; align-items:baseline">
+          <span style="flex:0 0 44px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#7C8698">Next</span>
+          <span style="font-size:15px; color:#C3C9D6">Docker isolation behind a replaceable boundary, then real execution</span>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center">
+        <a href="https://github.com/jhansi-io/jhansi/discussions" style="display:inline-block; padding:11px 20px; border-radius:9px; font-size:15px; font-weight:600; background:#5632F5; color:#fff" class="btn-p">Join the discussion →</a>
+        <a href="https://jhansiio.featurebase.app" style="display:inline-block; padding:11px 20px; border-radius:9px; font-size:15px; font-weight:600; border:1px solid #1B2437; color:#fff" class="btn-g">Follow the roadmap</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <div class="jh-pad" style="max-width:680px; margin:0 auto; padding:34px 24px 60px; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:12px; color:#7C8698">
+    <span>© 2026 jhansi.io · pre-alpha</span>
+    <span style="display:flex; gap:18px; flex-wrap:wrap">
+      <a href="https://github.com/jhansi-io/jhansi">GitHub</a>
+      <a href="https://jhansiio.featurebase.app">Roadmap</a>
       <a href="mailto:hello@jhansi.io">Contact</a>
-    </div>
-  </nav>
+      <a href="https://www.apache.org/licenses/LICENSE-2.0">Licence</a>
+    </span>
+  </div>
 
-  <main>
-
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="tag">Self-hosted execution for AI agents</div>
-          <h1>Give AI agents <span>execution</span>, not access.</h1>
-          <p class="desc">Run AI-generated code inside isolated sandboxes. Credentials stay under your control. Agents never see secrets.</p>
-          <div class="actions">
-            <a class="btn-primary" href="https://docs.jhansi.io/getting-started/quickstart">Get started →</a>
-            <a class="btn-secondary" href="why-jhansi.html">Why Jhansi?</a>
-          </div>
-          <div class="proof">
-            <span class="pill">Open source</span>
-            <span class="pill">Self-hosted</span>
-            <span class="pill">MCP compatible</span>
-            <span class="pill">Python SDK</span>
-          </div>
-        </div>
-        <div class="visual-card">
-          <div class="terminal">
-            <div class="terminal-bar"><span class="circle"></span><span class="circle"></span><span class="circle"></span></div>
-            <div class="terminal-body">
-              <div><span class="dim"># agent request</span></div>
-              <div>query_customers(created_since="2026-06-01")</div>
-              <br />
-              <div><span class="green">✓</span> sandbox created</div>
-              <div><span class="amber">→</span> credential mapped at runtime</div>
-              <div><span class="green">✓</span> code executed in isolation</div>
-              <div><span class="green">✓</span> result returned to agent</div>
-              <div><span class="green">✓</span> sandbox destroyed</div>
-              <div><span class="red">✗</span> DB_PASSWORD never exposed</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- THE PROBLEM -->
-    <section>
-      <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">The problem</div>
-          <h2>The agent should not hold your secrets.</h2>
-          <p>AI agents need to run code, query databases, call APIs and automate workflows. But giving them raw credentials creates a new security boundary problem.</p>
-        </div>
-        <div class="bad-good">
-          <div class="card">
-            <div class="card-label">Without Jhansi</div>
-            <div class="flow">
-              <div class="node danger"><strong>AI Agent</strong> receives credentials</div>
-              <div class="node danger"><strong>DB_PASSWORD</strong></div>
-              <div class="node danger"><strong>API_TOKEN</strong></div>
-              <div class="node danger"><strong>AWS_KEY</strong></div>
-            </div>
-          </div>
-          <div class="card soft">
-            <div class="card-label">With Jhansi</div>
-            <div class="flow">
-              <div class="node safe"><strong>AI Agent</strong> requests execution</div>
-              <div class="node safe"><strong>Jhansi</strong> creates an isolated sandbox</div>
-              <div class="node safe"><strong>Credentials</strong> are injected at runtime</div>
-              <div class="node safe"><strong>Result</strong> returned, sandbox destroyed</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHAT JHANSI DOES -->
-    <section>
-      <div class="container architecture">
-        <div class="section-head">
-          <div class="section-kicker">What Jhansi does</div>
-          <h2>A runtime boundary between agents and your systems.</h2>
-          <p>Jhansi gives AI agents a controlled place to execute work without directly exposing your machine, environment or credentials.</p>
-        </div>
-        <div class="stack">
-          <div class="stack-layer"><strong>Agent Interface</strong><p>Connect through MCP or the Python SDK.</p></div>
-          <div class="connector"></div>
-          <div class="stack-layer"><strong>Isolated Runtime</strong><p>Create a sandbox, run generated code, collect output and clean up.</p></div>
-          <div class="connector"></div>
-          <div class="stack-layer"><strong>Credential Mapping</strong><p>Credentials are injected during execution, not handed to the agent.</p></div>
-          <div class="connector"></div>
-          <div class="stack-layer"><strong>Future Governance Layer</strong><p>Centralized audit, policies and enterprise controls as the platform matures.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CORE CAPABILITIES -->
-    <section>
-      <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">Core capabilities</div>
-          <h2>Start with a simple self-hosted runtime.</h2>
-          <p>Jhansi focuses on the execution boundary first. Governance can grow later when real teams and real systems are involved.</p>
-        </div>
-        <div class="features">
-          <div class="card"><div class="feature-icon">01</div><h3>Self-hosted</h3><p>Run inside your own infrastructure without depending on a cloud execution provider.</p></div>
-          <div class="card"><div class="feature-icon">02</div><h3>Sandboxed execution</h3><p>Execute generated code away from the user's local machine and environment.</p></div>
-          <div class="card"><div class="feature-icon">03</div><h3>Secret isolation</h3><p>Agents get results, not raw passwords, tokens or connection strings.</p></div>
-          <div class="card"><div class="feature-icon">04</div><h3>Audit ready</h3><p>Build towards logs, run history and reviewable execution records.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- USE CASES -->
-    <section>
-      <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">Use cases</div>
-          <h2>For teams adopting AI agents.</h2>
-          <p>Jhansi is for builders who want AI agents to execute useful work without handing them unrestricted access.</p>
-        </div>
-        <div class="grid-3">
-          <div class="card"><h3>AI developers</h3><p>Run generated code safely while building agents and MCP workflows.</p></div>
-          <div class="card"><h3>Platform teams</h3><p>Standardize how agent-generated code runs inside your environment.</p></div>
-          <div class="card"><h3>Regulated teams</h3><p>Prepare for auditability and governance before agents reach sensitive systems.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- COMPARISON TEASER -->
-    <section>
-      <div class="container">
-        <div class="teaser">
-          <div>
-            <div class="section-kicker">Comparison</div>
-            <h3>Why not local execution, Docker, E2B or Daytona?</h3>
-            <p>See where Jhansi fits and why self-hosted execution matters.</p>
-          </div>
-          <a class="btn-secondary" href="why-jhansi.html">Compare approaches →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- FINAL CTA -->
-    <section>
-      <div class="container">
-        <div class="final-cta">
-          <div class="section-kicker">Next</div>
-          <h2>Stop giving credentials to AI agents.</h2>
-          <p class="desc">Run generated code safely, keep secrets controlled and make every execution easier to reason about.</p>
-          <div class="actions">
-            <a class="btn-primary" href="https://docs.jhansi.io/getting-started/quickstart">Get started →</a>
-            <a class="btn-secondary" href="https://github.com/jhansi-io">View GitHub</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <p>© 2026 jhansi.io</p>
-    <div class="footer-links">
-      <a href="https://docs.jhansi.io">Docs</a>
-      <a href="https://github.com/jhansi-io">GitHub</a>
-    </div>
-  </footer>
+</div>
 </body>
 </html>

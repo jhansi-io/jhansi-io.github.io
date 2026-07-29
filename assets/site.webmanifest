@@ -1,0 +1,27 @@
+{
+  "name": "jhansi.io",
+  "short_name": "jhansi",
+  "description": "Self-hosted runtime for untrusted and AI-generated code. Simple to run. Provable by design.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#03091B",
+  "theme_color": "#5632F5",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

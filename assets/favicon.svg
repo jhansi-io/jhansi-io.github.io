@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="614" height="614" viewBox="0 0 614 614" role="img" aria-label="Jhansi app icon">
+  <rect width="614" height="614" rx="120" fill="#03091B"></rect>
+  <g transform="translate(52 112.22857142857143) scale(0.9714285714285714) translate(-46 -118)">
+    <path fill="#5632F5" d="M 183 280 C 173 280 167 273 167 263 L 167 216 C 167 201 174 190 187 182 L 282 124 C 292 118 303 118 313 124 L 417 187 C 426 193 430 203 430 215 L 430 263 C 430 273 424 280 414 280 C 404 280 398 273 398 263 L 398 225 C 398 218 395 213 389 209 L 309 160 L 293 150 L 293 165 L 208 217 C 202 221 199 226 199 233 L 199 263 C 199 273 193 280 183 280 Z"></path>
+    <path fill="#5632F5" d="M 183 357 C 173 357 167 364 167 374 L 167 421 C 167 436 174 447 187 455 L 282 513 C 292 519 303 519 313 513 L 417 450 C 426 444 430 434 430 422 L 430 374 C 430 364 424 357 414 357 C 404 357 398 364 398 374 L 398 412 C 398 419 395 424 389 428 L 309 477 C 303 481 292 481 286 477 L 208 429 C 202 425 199 420 199 413 L 199 374 C 199 364 193 357 183 357 Z"></path>
+    <rect x="46" y="309" width="30" height="23" rx="11.5" fill="#5632F5"></rect>
+    <rect x="91" y="309" width="30" height="23" rx="11.5" fill="#5632F5"></rect>
+    <rect x="136" y="309" width="30" height="23" rx="11.5" fill="#5632F5"></rect>
+    <rect x="181" y="309" width="30" height="23" rx="11.5" fill="#5632F5"></rect>
+    <path d="M 247 280 L 285 320 L 247 361" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"></path>
+    <rect x="302" y="359" width="55" height="16" rx="8" fill="#FFFFFF"></rect>
+    <path d="M 390 320 H 493 M 477 291 L 514 320 L 477 351" fill="none" stroke="#08BE7B" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"></path>
+    <rect x="541" y="309" width="30" height="23" rx="11.5" fill="#08BE7B"></rect>
+  </g>
+</svg>
